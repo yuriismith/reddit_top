@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="g2g-Og-m9K">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PiQ-ob-3Me">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,7 @@
         <!--Image View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ImageViewController" customModule="Reddit_Top" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ImageScreen" id="BYZ-38-t0r" customClass="ImageViewController" customModule="Reddit_Top" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,24 +34,30 @@
                                     <constraint firstItem="3h9-1g-GfM" firstAttribute="width" secondItem="seh-GK-Yz5" secondAttribute="width" id="nUs-zK-w4Y"/>
                                 </constraints>
                             </scrollView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="V4A-Ra-J74">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="V4A-Ra-J74" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1HU-PQ-yiu"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="seh-GK-Yz5" secondAttribute="bottom" id="HB8-31-6rd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="seh-GK-Yz5" secondAttribute="trailing" id="XA5-Ul-j8t"/>
                             <constraint firstItem="seh-GK-Yz5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ZMM-W6-4MB"/>
+                            <constraint firstItem="V4A-Ra-J74" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ktK-DL-jl2"/>
                             <constraint firstItem="seh-GK-Yz5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vKi-QO-BtP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="V4A-Ra-J74" id="fJQ-C4-8bi"/>
                         <outlet property="imageView" destination="3h9-1g-GfM" id="lCZ-8M-fc3"/>
                         <outlet property="scrollView" destination="seh-GK-Yz5" id="RxJ-CL-VGR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1503" y="21"/>
+            <point key="canvasLocation" x="2413.04347826087" y="20.758928571428569"/>
         </scene>
         <!--Reddits Table View Controller-->
         <scene sceneID="sfQ-IX-pKK">
@@ -62,7 +68,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="86" id="Giw-Qh-xQH" customClass="RedditTableViewCell" customModule="Reddit_Top" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RedditCell" rowHeight="86" id="Giw-Qh-xQH" customClass="RedditTableViewCell" customModule="Reddit_Top" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="86"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Giw-Qh-xQH" id="4Bm-JS-QzE">
@@ -75,13 +81,16 @@
                                                 <constraint firstAttribute="width" constant="32" id="7d5-6D-qrk"/>
                                                 <constraint firstAttribute="height" constant="32" id="eZk-LQ-We7"/>
                                             </constraints>
+                                            <connections>
+                                                <action selector="buttonTapped:" destination="Giw-Qh-xQH" eventType="touchUpInside" id="tL1-lX-GAi"/>
+                                            </connections>
                                         </button>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="MFL-5c-sb3">
                                             <rect key="frame" x="11" y="46" width="20" height="20"/>
                                         </activityIndicatorView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfy-3X-GGK">
                                             <rect key="frame" x="5" y="5" width="404" height="34.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -117,7 +126,10 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="activityIndicator" destination="MFL-5c-sb3" id="oxr-8Y-tUo"/>
+                                    <outlet property="authorLabel" destination="1ZE-2L-Ig4" id="qHV-n4-UeT"/>
+                                    <outlet property="commentsLable" destination="UEI-5L-16V" id="Rxm-Mx-RVB"/>
                                     <outlet property="thumbnailButton" destination="SaU-96-mi8" id="ssJ-lS-VE8"/>
+                                    <outlet property="titleLabel" destination="Hfy-3X-GGK" id="e8V-xu-thS"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -126,10 +138,29 @@
                             <outlet property="delegate" destination="g2g-Og-m9K" id="GU0-L0-4kf"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="dWn-oU-InT"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tmr-Wa-77s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="789.85507246376812" y="20.758928571428569"/>
+            <point key="canvasLocation" x="1700.0000000000002" y="20.758928571428569"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Jna-mx-2MI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PiQ-ob-3Me" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xrd-b3-uFQ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="g2g-Og-m9K" kind="relationship" relationship="rootViewController" id="yER-r7-SW4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eeP-bH-Zow" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="975" y="21"/>
         </scene>
     </scenes>
 </document>
