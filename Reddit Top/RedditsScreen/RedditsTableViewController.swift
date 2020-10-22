@@ -20,11 +20,11 @@ class RedditsTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return viewModel.numberOfSections
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return viewModel.numberOfRows
     }
     
     
@@ -35,17 +35,7 @@ class RedditsTableViewController: UITableViewController {
         
         return cell
     }
-    
-    // MARK: - Navigation
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        guard let imageVC = segue.destination as? ImageViewController else { return }
-//        let viewModel = ImageViewModel(image: URL(fileURLWithPath: ""))
-//        imageVC.viewModel = viewModel
-//        
-//    }
-    
-    
+
 }
 
 extension RedditsTableViewController: RedditTableViewCellDelegate {
@@ -58,9 +48,7 @@ extension RedditsTableViewController: RedditTableViewCellDelegate {
 //        TODO: implement image URL getter
         imageVC.viewModel = ImageViewModel(image: URL(fileURLWithPath: ""))
         self.show(imageVC, sender: self)
-        
-//        self.performSegue(withIdentifier: "showImage", sender: self)
-        
+ 
     }
 }
 
