@@ -15,6 +15,7 @@ class RedditsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
+        viewModel.loadReddits()
     }
     
     // MARK: - Table view data source

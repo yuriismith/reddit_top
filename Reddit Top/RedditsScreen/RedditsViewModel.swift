@@ -12,11 +12,23 @@ class RedditsViewModel {
     
     weak var delegate: RedditsViewModelDelegate?
     let numberOfSections = 1
-    private (set) var numberOfRows = 2 // this is temporarily
+    var numberOfRows: Int {
+        return entries.count
+    }
+    private var entries = [Entry]()
     
-    private func loadReddits() {
+    func loadReddits() {
+        NetworkManager.getTop(limit: 5) { [weak self] result in
+            guard let strongSelf = self else { return }
+            switch result {
+            case .success(let entries):
+                strongSelf.entries = entries
+                strongSelf.delegate?.didLoadReddits()
+            case .failure(_):
+                break
+            }
+        }
         
-        delegate?.didLoadReddits()
     }
     
 }
