@@ -11,18 +11,6 @@ import UIKit
 
 struct Entry {
     
-//    init(full: FullEntry) {
-//        self.id = full.name
-//        self.title = full.title
-//        self.author = full.author
-//        self.date = Date(timeIntervalSince1970: TimeInterval(full.createdUTC)) 
-//        self.commentsCount = full.numComments
-//        self.thumbnail = nil
-//        if let path = full.media?.oembed.thumbnailURL {
-//            self.imageURL = URL(string: path)
-//        }
-//    }
-    
     init(small: SmallEntry) {
         self.id = small.name
         self.title = small.title
@@ -45,6 +33,5 @@ struct Entry {
 extension Array where Element == Child {
     var entries: [Entry] {
         return self.map { Entry(small: $0.data) }
-//        return self.map { Entry(full: $0.data) }
     }
 }

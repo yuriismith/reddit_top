@@ -15,7 +15,7 @@ class RedditsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
-        viewModel.loadReddits()
+        viewModel.loadReddits(limit: 5)
     }
     
     // MARK: - Table view data source
@@ -54,8 +54,17 @@ extension RedditsTableViewController: RedditTableViewCellDelegate {
 }
 
 extension RedditsTableViewController: RedditsViewModelDelegate {
+    func failedToLoadReddits() {
+        // remove loading indicator
+    }
+    
     
     func didLoadReddits() {
+        self.tableView.reloadData()
+        self.viewModel.loadMoreRaddits(limit: 3)
+    }
+    
+    func didLoadMoreReddits() {
         self.tableView.reloadData()
     }
     

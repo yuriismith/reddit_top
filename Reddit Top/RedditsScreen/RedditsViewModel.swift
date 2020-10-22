@@ -17,8 +17,12 @@ class RedditsViewModel {
     }
     private var entries = [Entry]()
     
-    func loadReddits() {
-        NetworkManager.getTop(limit: 5) { [weak self] result in
+    // Reddit documentation says that threads are updated so frequently, that it is a good idea to reload all previous Entries on pull to refresh
+    /// Loads Entries and removes all previously loaded
+    ///
+    /// - Parameter limit: page size
+    func loadReddits(limit: Int) {
+        NetworkManager.getTop(limit: limit) { [weak self] result in
             guard let strongSelf = self else { return }
             switch result {
             case .success(let entries):
@@ -28,11 +32,32 @@ class RedditsViewModel {
                 break
             }
         }
-        
+    }
+    
+    /// Loads more Entries after last loaded one
+    ///
+    /// - Parameter limit: page size
+    func loadMoreRaddits(limit: Int) {
+        guard let last = entries.last?.id else {
+            delegate?.failedToLoadReddits()
+            return
+        }
+        NetworkManager.getTop(limit: limit, after: last) { [weak self] result in
+            guard let strongSelf = self else { return }
+            switch result {
+            case .success(let newEntries):
+                strongSelf.entries.append(contentsOf: newEntries)
+                strongSelf.delegate?.didLoadMoreReddits()
+            case .failure(_):
+                break
+            }
+        }
     }
     
 }
 
 protocol RedditsViewModelDelegate: AnyObject {
     func didLoadReddits()
+    func didLoadMoreReddits()
+    func failedToLoadReddits()
 }

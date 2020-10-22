@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import UIKit
+
+typealias ImageLoadingCompletion = (UIImage?) -> Void
 
 class NetworkManager {
     
@@ -58,10 +61,31 @@ class NetworkManager {
         return request
     }
     
+    
+    private static func getTopInternal(endpoint: Endpoint, completion: @escaping (Result<Welcome, RedditError>) -> Void) {
+        guard let request = prepareRequest(for: endpoint) else { return }
+        fetchResources(request: request, completion: completion)
+    }
+    
+    static func loadImage(url: URL, completion: @escaping ImageLoadingCompletion) {
+        
+        URLSession(configuration: URLSessionConfiguration.default).dataTask(with: url) { response in
+            switch response {
+            case .success(let (_, data)):
+                DispatchQueue.main.async {
+                    return completion(UIImage(data: data))
+                }
+            case .failure(let error):
+                DummyErrorHandler.handle(error)
+                return completion(nil)
+            }
+        }.resume()
+    }
+    
     // MARK: - Endpoints logic
     
     static func getTop(limit: Int, completion: @escaping (Result<[Entry], RedditError>) -> Void) {
-        getTopInternal(limit: limit) { result in
+        getTopInternal(endpoint: Endpoint.top(limit: limit)) { result in
             switch result {
             case .success(let response):
                 completion(.success(response.data.children.entries))
@@ -71,9 +95,15 @@ class NetworkManager {
         }
     }
     
-    private static func getTopInternal(limit: Int, completion: @escaping (Result<Welcome, RedditError>) -> Void) {
-        guard let request = prepareRequest(for: Endpoint.top(limit: limit)) else { return }
-        fetchResources(request: request, completion: completion)
+    static func getTop(limit: Int, after: String, completion: @escaping (Result<[Entry], RedditError>) -> Void) {
+        getTopInternal(endpoint: .page(limit: limit, lastId: after)) { result in
+            switch result {
+            case .success(let response):
+                completion(.success(response.data.children.entries))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
     
 }
@@ -82,18 +112,28 @@ extension URLSession {
     
     func dataTask(with request: URLRequest, result: @escaping (Result<(URLResponse, Data), Error>) -> Void) -> URLSessionTask {
         return dataTask(with: request) { data, response, error in
-            if let error = error {
-                result(.failure(error))
-                return
-            }
-            
-            guard let response = response, let data = data else {
-                let error = NSError(domain: "error", code: 0, userInfo: nil)
-                result(.failure(error))
-                return
-            }
-            result(.success((response, data)))
+            self.processResponse(data: data, response: response, error: error, result: result)
         }
+    }
+    
+    func dataTask(with url: URL, result: @escaping (Result<(URLResponse, Data), Error>) -> Void) -> URLSessionTask {
+        return dataTask(with: url) { data, response, error in
+            self.processResponse(data: data, response: response, error: error, result: result)
+        }
+    }
+    
+    private func processResponse(data: Data?, response: URLResponse?, error: Error?, result: @escaping (Result<(URLResponse, Data), Error>) -> Void) {
+        if let error = error {
+            result(.failure(error))
+            return
+        }
+        
+        guard let response = response, let data = data else {
+            let error = NSError(domain: "error", code: 0, userInfo: nil)
+            result(.failure(error))
+            return
+        }
+        result(.success((response, data)))
     }
     
 }
