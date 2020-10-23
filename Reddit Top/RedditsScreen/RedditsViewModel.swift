@@ -12,9 +12,12 @@ class RedditsViewModel {
     
     weak var delegate: RedditsViewModelDelegate?
     let numberOfSections = 1
+    
     var numberOfRows: Int {
         return entries.count
     }
+    
+    private var isLoadingcontent = false
     private var entries = [Entry]()
     
     func model(for indexPath: IndexPath) -> Entry? {
@@ -26,8 +29,11 @@ class RedditsViewModel {
     ///
     /// - Parameter limit: page size
     func loadReddits(limit: Int) {
+        guard !isLoadingcontent else { return }
+        isLoadingcontent = true
         NetworkManager.getTop(limit: limit) { [weak self] result in
             guard let strongSelf = self else { return }
+            strongSelf.isLoadingcontent = false
             switch result {
             case .success(let entries):
                 strongSelf.entries = entries
@@ -42,12 +48,15 @@ class RedditsViewModel {
     ///
     /// - Parameter limit: page size
     func loadMoreRaddits(limit: Int) {
+        guard !isLoadingcontent else { return }
         guard let last = entries.last?.id else {
             delegate?.failedToLoadReddits()
             return
         }
+        isLoadingcontent = true
         NetworkManager.getTop(limit: limit, after: last) { [weak self] result in
             guard let strongSelf = self else { return }
+            strongSelf.isLoadingcontent = false
             switch result {
             case .success(let newEntries):
                 strongSelf.entries.append(contentsOf: newEntries)

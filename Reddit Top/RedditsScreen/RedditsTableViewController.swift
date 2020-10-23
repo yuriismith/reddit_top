@@ -8,16 +8,36 @@
 
 import UIKit
 
-class RedditsTableViewController: UITableViewController {
+final class RedditsTableViewController: UITableViewController {
     
     let viewModel = RedditsViewModel()
+    fileprivate let oneThirdOfScreen = UIScreen.main.bounds.height / 3
+    fileprivate let estimatedRowHeight: CGFloat = 100.0
+    fileprivate lazy var pageSize: Int = {
+        return Int((UIScreen.main.bounds.height + oneThirdOfScreen) / estimatedRowHeight)
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 100.0
+        tableView.estimatedRowHeight = estimatedRowHeight
         viewModel.delegate = self
-        viewModel.loadReddits(limit: 5)
+        viewModel.loadReddits(limit: pageSize)
+        showActivityFooter()
+    }
+    
+    fileprivate func showActivityFooter() {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100.0))
+        let spinner = UIActivityIndicatorView()
+        footerView.addSubview(spinner)
+        spinner.center = footerView.center
+        spinner.startAnimating()
+        
+        self.tableView.tableFooterView = footerView
+    }
+    
+    fileprivate func hideActivityFooter() {
+        self.tableView.tableFooterView = nil
     }
     
     // MARK: - Table view data source
@@ -29,7 +49,6 @@ class RedditsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -50,6 +69,14 @@ class RedditsTableViewController: UITableViewController {
         }
         
         return cell
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        if position > (self.tableView.contentSize.height - self.oneThirdOfScreen - scrollView.frame.height) {
+            self.viewModel.loadMoreRaddits(limit: self.pageSize)
+            showActivityFooter()
+        }
     }
 
 }
@@ -76,11 +103,12 @@ extension RedditsTableViewController: RedditsViewModelDelegate {
     
     func didLoadReddits() {
         self.tableView.reloadData()
-        self.viewModel.loadMoreRaddits(limit: 23)
+        hideActivityFooter()
     }
     
     func didLoadMoreReddits() {
         self.tableView.reloadData()
+        hideActivityFooter()
     }
     
 }
