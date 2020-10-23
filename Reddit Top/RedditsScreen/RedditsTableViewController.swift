@@ -24,6 +24,7 @@ final class RedditsTableViewController: UITableViewController {
         viewModel.delegate = self
         viewModel.loadReddits(limit: pageSize)
         showActivityFooter()
+        configureRefreshControl()
     }
     
     fileprivate func showActivityFooter() {
@@ -38,6 +39,23 @@ final class RedditsTableViewController: UITableViewController {
     
     fileprivate func hideActivityFooter() {
         self.tableView.tableFooterView = nil
+    }
+    
+    func configureRefreshControl () {
+        self.tableView.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl?.addTarget(self, action:
+            #selector(handleRefreshControl), for: .valueChanged)
+    }
+    
+    @objc func handleRefreshControl() {
+        // refresh all data completely
+        viewModel.loadReddits(limit: pageSize)
+        // Update your content…
+        
+        // Dismiss the refresh control.
+        DispatchQueue.main.async {
+            self.tableView.refreshControl?.endRefreshing()
+        }
     }
     
     // MARK: - Table view data source
@@ -97,12 +115,14 @@ extension RedditsTableViewController: RedditTableViewCellDelegate {
 
 extension RedditsTableViewController: RedditsViewModelDelegate {
     func failedToLoadReddits() {
-        // remove loading indicator
+        self.tableView.refreshControl?.endRefreshing()
+        hideActivityFooter()
     }
     
     
     func didLoadReddits() {
         self.tableView.reloadData()
+        self.tableView.refreshControl?.endRefreshing()
         hideActivityFooter()
     }
     
