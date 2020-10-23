@@ -43,7 +43,6 @@ class NetworkManager {
                     DispatchQueue.main.async {
                         completion(.failure(.decodingError))
                         DummyErrorHandler.handle(error)
-//                        DummyErrorHandler.presentDefaultError()
                     }
                 }
             }

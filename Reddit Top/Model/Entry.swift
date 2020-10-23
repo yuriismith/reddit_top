@@ -18,8 +18,11 @@ struct Entry {
         self.date = Date(timeIntervalSince1970: TimeInterval(small.created))
         self.commentsCount = small.num_comments
         self.thumbnail = nil
-        self.thumbnailURL = URL(string: small.thumbnail)
-        if let url = small.url_overridden_by_dest {
+        if small.thumbnail.isValidURL {
+            self.thumbnailURL = URL(string: small.thumbnail)
+        }
+        if let url = small.url_overridden_by_dest,
+            url.isValidURL {
             self.imageURL = URL(string: url)
         }
         

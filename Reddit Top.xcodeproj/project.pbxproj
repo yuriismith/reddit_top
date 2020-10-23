@@ -27,6 +27,7 @@
 		043C9A6025423BA300AA18E2 /* Collection+Exension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043C9A5F25423BA300AA18E2 /* Collection+Exension.swift */; };
 		043C9A6225424A4000AA18E2 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043C9A6125424A4000AA18E2 /* Cache.swift */; };
 		043C9A6425428A8C00AA18E2 /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043C9A6325428A8C00AA18E2 /* ImageSaver.swift */; };
+		04856AB32543160F003E9568 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04856AB22543160F003E9568 /* String+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		043C9A5F25423BA300AA18E2 /* Collection+Exension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Exension.swift"; sourceTree = "<group>"; };
 		043C9A6125424A4000AA18E2 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		043C9A6325428A8C00AA18E2 /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
+		04856AB22543160F003E9568 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 			children = (
 				043C9A5F25423BA300AA18E2 /* Collection+Exension.swift */,
 				043C9A6325428A8C00AA18E2 /* ImageSaver.swift */,
+				04856AB22543160F003E9568 /* String+extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				043C9A432541AFE300AA18E2 /* RedditsTableViewController.swift in Sources */,
 				043C9A6025423BA300AA18E2 /* Collection+Exension.swift in Sources */,
 				043C9A4E2541D41D00AA18E2 /* NetworkManager.swift in Sources */,
+				04856AB32543160F003E9568 /* String+extension.swift in Sources */,
 				043C9A542541D52C00AA18E2 /* Endpoint.swift in Sources */,
 				043C9A572541D63400AA18E2 /* TopResponse.swift in Sources */,
 				043C9A312541AE9800AA18E2 /* AppDelegate.swift in Sources */,
