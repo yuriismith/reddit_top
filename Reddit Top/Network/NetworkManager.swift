@@ -13,6 +13,8 @@ typealias ImageLoadingCompletion = (UIImage?) -> Void
 
 class NetworkManager {
     
+    static fileprivate let cache = Cache()
+    
     // MARK: - Service logic
     
     static private func fetchResources<T: Decodable>(request: URLRequest, completion: @escaping (Result<T, RedditError>) -> Void) {
@@ -68,16 +70,26 @@ class NetworkManager {
     }
     
     static func loadImage(url: URL, completion: @escaping ImageLoadingCompletion) {
+        if let image = cache.image(for: url) {
+            DispatchQueue.main.async {
+                completion(image)
+            }
+            return
+        }
         
         URLSession(configuration: URLSessionConfiguration.default).dataTask(with: url) { response in
             switch response {
             case .success(let (_, data)):
+                let image = UIImage(data: data)
+                cache.addImage(image, for: url)
                 DispatchQueue.main.async {
-                    return completion(UIImage(data: data))
+                    return completion(image)
                 }
             case .failure(let error):
                 DummyErrorHandler.handle(error)
-                return completion(nil)
+                DispatchQueue.main.async {
+                    return completion(nil)
+                }
             }
         }.resume()
     }

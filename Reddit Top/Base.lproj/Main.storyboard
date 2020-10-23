@@ -68,15 +68,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RedditCell" rowHeight="86" id="Giw-Qh-xQH" customClass="RedditTableViewCell" customModule="Reddit_Top" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="86"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RedditCell" rowHeight="97" id="Giw-Qh-xQH" customClass="RedditTableViewCell" customModule="Reddit_Top" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="97"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Giw-Qh-xQH" id="4Bm-JS-QzE">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="85.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="96.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SaU-96-mi8">
-                                            <rect key="frame" x="5" y="40" width="32" height="32"/>
+                                            <rect key="frame" x="5" y="51" width="32" height="32"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="32" id="7d5-6D-qrk"/>
                                                 <constraint firstAttribute="height" constant="32" id="eZk-LQ-We7"/>
@@ -86,40 +86,41 @@
                                             </connections>
                                         </button>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="MFL-5c-sb3">
-                                            <rect key="frame" x="11" y="46" width="20" height="20"/>
+                                            <rect key="frame" x="11" y="57" width="20" height="20"/>
                                         </activityIndicatorView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfy-3X-GGK">
-                                            <rect key="frame" x="5" y="5" width="404" height="34.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfy-3X-GGK">
+                                            <rect key="frame" x="5" y="5" width="404" height="30.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="&quot;Author&quot; x hours ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ZE-2L-Ig4">
-                                            <rect key="frame" x="42" y="34.5" width="347" height="20.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="&quot;Author&quot; x hours ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ZE-2L-Ig4">
+                                            <rect key="frame" x="42" y="45.5" width="347" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Comments: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEI-5L-16V">
-                                            <rect key="frame" x="42" y="60" width="367" height="20.5"/>
+                                            <rect key="frame" x="42" y="71" width="367" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="1ZE-2L-Ig4" firstAttribute="leading" secondItem="SaU-96-mi8" secondAttribute="trailing" constant="5" id="2Rx-qo-wYa"/>
+                                        <constraint firstItem="1ZE-2L-Ig4" firstAttribute="leading" secondItem="SaU-96-mi8" secondAttribute="trailing" priority="700" constant="5" id="2Rx-qo-wYa"/>
+                                        <constraint firstItem="UEI-5L-16V" firstAttribute="leading" secondItem="1ZE-2L-Ig4" secondAttribute="leading" id="3YL-Hk-85U"/>
                                         <constraint firstItem="Hfy-3X-GGK" firstAttribute="leading" secondItem="4Bm-JS-QzE" secondAttribute="leading" constant="5" id="9Sm-tg-Ogv"/>
                                         <constraint firstAttribute="trailing" secondItem="UEI-5L-16V" secondAttribute="trailing" constant="5" id="9Zt-j5-OeS"/>
                                         <constraint firstItem="SaU-96-mi8" firstAttribute="leading" secondItem="4Bm-JS-QzE" secondAttribute="leading" constant="5" id="AHJ-ag-foc"/>
+                                        <constraint firstItem="1ZE-2L-Ig4" firstAttribute="leading" secondItem="4Bm-JS-QzE" secondAttribute="leading" priority="200" constant="5" id="Ets-6q-fJj"/>
                                         <constraint firstItem="MFL-5c-sb3" firstAttribute="centerY" secondItem="SaU-96-mi8" secondAttribute="centerY" id="FfL-7s-Nsg"/>
                                         <constraint firstItem="UEI-5L-16V" firstAttribute="top" secondItem="1ZE-2L-Ig4" secondAttribute="bottom" constant="5" id="HgL-WJ-hZt"/>
                                         <constraint firstItem="MFL-5c-sb3" firstAttribute="centerX" secondItem="SaU-96-mi8" secondAttribute="centerX" id="TDA-rF-mzG"/>
-                                        <constraint firstItem="UEI-5L-16V" firstAttribute="leading" secondItem="SaU-96-mi8" secondAttribute="trailing" constant="5" id="Wej-3H-QK3"/>
                                         <constraint firstItem="Hfy-3X-GGK" firstAttribute="top" secondItem="4Bm-JS-QzE" secondAttribute="top" constant="5" id="XXR-6V-fLg"/>
                                         <constraint firstAttribute="bottom" secondItem="UEI-5L-16V" secondAttribute="bottom" constant="5" id="ak4-l5-vUU"/>
                                         <constraint firstAttribute="trailing" secondItem="Hfy-3X-GGK" secondAttribute="trailing" constant="5" id="kQL-ay-4av"/>
-                                        <constraint firstItem="1ZE-2L-Ig4" firstAttribute="top" secondItem="Hfy-3X-GGK" secondAttribute="bottom" constant="-5" id="lOE-0L-gWi"/>
+                                        <constraint firstItem="1ZE-2L-Ig4" firstAttribute="top" secondItem="Hfy-3X-GGK" secondAttribute="bottom" constant="10" id="lOE-0L-gWi"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="SaU-96-mi8" secondAttribute="bottom" constant="3" id="m7a-M9-s9P"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="1ZE-2L-Ig4" secondAttribute="trailing" constant="5" id="s6U-2R-f7P"/>
                                     </constraints>
@@ -127,6 +128,7 @@
                                 <connections>
                                     <outlet property="activityIndicator" destination="MFL-5c-sb3" id="oxr-8Y-tUo"/>
                                     <outlet property="authorLabel" destination="1ZE-2L-Ig4" id="qHV-n4-UeT"/>
+                                    <outlet property="authorLabelLeading" destination="Ets-6q-fJj" id="aTt-jO-DOY"/>
                                     <outlet property="commentsLable" destination="UEI-5L-16V" id="Rxm-Mx-RVB"/>
                                     <outlet property="thumbnailButton" destination="SaU-96-mi8" id="ssJ-lS-VE8"/>
                                     <outlet property="titleLabel" destination="Hfy-3X-GGK" id="e8V-xu-thS"/>

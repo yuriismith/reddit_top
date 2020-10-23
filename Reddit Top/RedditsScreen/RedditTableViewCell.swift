@@ -16,6 +16,9 @@ class RedditTableViewCell: UITableViewCell {
     
     @IBOutlet weak var thumbnailButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var authorLabelLeading: NSLayoutConstraint!
+    
+    var imageURL: URL?
     
     static let reuseIdentifier = "RedditCell"
     
@@ -27,6 +30,11 @@ class RedditTableViewCell: UITableViewCell {
     
     @IBAction func buttonTapped(_ sender: UIButton) {
         self.delegate?.buttonTapped(sender)
+    }
+        
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        thumbnailButton.setImage(nil, for: .normal)
     }
     
 }

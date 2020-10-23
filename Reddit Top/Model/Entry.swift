@@ -18,7 +18,8 @@ struct Entry {
         self.date = Date(timeIntervalSince1970: TimeInterval(small.created))
         self.commentsCount = small.num_comments
         self.thumbnail = nil
-        self.imageURL = URL(string: small.thumbnail)
+        self.thumbnailURL = URL(string: small.thumbnail)
+        self.imageURL = URL(string: small.url_overridden_by_dest)
     }
     
     var id: String
@@ -27,6 +28,7 @@ struct Entry {
     var date: Date
     var commentsCount: Int
     var thumbnail: UIImage?
+    var thumbnailURL: URL?
     var imageURL: URL?
 }
 

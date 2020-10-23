@@ -14,6 +14,8 @@ class RedditsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100.0
         viewModel.delegate = self
         viewModel.loadReddits(limit: 5)
     }
@@ -30,9 +32,22 @@ class RedditsTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = RedditTableViewCell.dequeue(for: tableView, at: indexPath)
         cell.delegate = self
-        cell.selectionStyle = .none
+        if let model = viewModel.model(for: indexPath) {
+            let builder = RedditCellBuilder(cell: cell, model: model)
+            builder.addTitle()
+            .addAuthor()
+            .addComments()
+            .checkImage { [weak self] url in
+                self?.viewModel.getThumbnail(url) { image in
+                    builder.set(image: image)
+                }
+            }
+            
+            return builder.build()
+        }
         
         return cell
     }
@@ -61,7 +76,7 @@ extension RedditsTableViewController: RedditsViewModelDelegate {
     
     func didLoadReddits() {
         self.tableView.reloadData()
-        self.viewModel.loadMoreRaddits(limit: 3)
+        self.viewModel.loadMoreRaddits(limit: 23)
     }
     
     func didLoadMoreReddits() {

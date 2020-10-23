@@ -17,6 +17,10 @@ class RedditsViewModel {
     }
     private var entries = [Entry]()
     
+    func model(for indexPath: IndexPath) -> Entry? {
+        return entries[safe: indexPath.row]
+    }
+    
     // Reddit documentation says that threads are updated so frequently, that it is a good idea to reload all previous Entries on pull to refresh
     /// Loads Entries and removes all previously loaded
     ///
@@ -52,6 +56,10 @@ class RedditsViewModel {
                 break
             }
         }
+    }
+    
+    func getThumbnail(_ url: URL, completion: @escaping ImageLoadingCompletion) {
+        NetworkManager.loadImage(url: url, completion: completion)
     }
     
 }
