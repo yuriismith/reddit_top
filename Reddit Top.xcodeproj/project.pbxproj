@@ -26,6 +26,7 @@
 		043C9A5D2542330700AA18E2 /* RedditCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043C9A5C2542330700AA18E2 /* RedditCellBuilder.swift */; };
 		043C9A6025423BA300AA18E2 /* Collection+Exension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043C9A5F25423BA300AA18E2 /* Collection+Exension.swift */; };
 		043C9A6225424A4000AA18E2 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043C9A6125424A4000AA18E2 /* Cache.swift */; };
+		043C9A6425428A8C00AA18E2 /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043C9A6325428A8C00AA18E2 /* ImageSaver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		043C9A5C2542330700AA18E2 /* RedditCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedditCellBuilder.swift; sourceTree = "<group>"; };
 		043C9A5F25423BA300AA18E2 /* Collection+Exension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Exension.swift"; sourceTree = "<group>"; };
 		043C9A6125424A4000AA18E2 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		043C9A6325428A8C00AA18E2 /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				043C9A5F25423BA300AA18E2 /* Collection+Exension.swift */,
+				043C9A6325428A8C00AA18E2 /* ImageSaver.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				043C9A592541D78F00AA18E2 /* Entry.swift in Sources */,
 				043C9A4B2541CC5900AA18E2 /* ImageViewModel.swift in Sources */,
 				043C9A332541AE9800AA18E2 /* ImageViewController.swift in Sources */,
+				043C9A6425428A8C00AA18E2 /* ImageSaver.swift in Sources */,
 				043C9A5B2542034B00AA18E2 /* ValidationError.swift in Sources */,
 				043C9A432541AFE300AA18E2 /* RedditsTableViewController.swift in Sources */,
 				043C9A6025423BA300AA18E2 /* Collection+Exension.swift in Sources */,

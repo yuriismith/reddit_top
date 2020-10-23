@@ -48,7 +48,8 @@ class ImageViewController: UIViewController {
     }
     
     @objc private func saveImage() {
-        print("save image")
+        guard let image = self.viewModel.image else { return }
+        ImageSaver().writeToPhotoAlbum(image)
     }
     
 }

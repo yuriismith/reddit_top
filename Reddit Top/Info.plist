@@ -41,5 +41,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>I need your clothes your boots and your motorcycle</string>
 </dict>
 </plist>
