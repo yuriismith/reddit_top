@@ -22,8 +22,12 @@ class ImageViewModel {
     private (set) var image: UIImage?
     
     private func loadImage() {
-        
-        delegate?.didLoadImage()
+        NetworkManager.loadImage(url: imageURL) { [weak self] image in
+            guard let strongSelf = self else { return }
+            
+            strongSelf.image = image
+            strongSelf.delegate?.didLoadImage()
+        }
     }
 }
 

@@ -101,13 +101,13 @@ final class RedditsTableViewController: UITableViewController {
 
 extension RedditsTableViewController: RedditTableViewCellDelegate {
     func buttonTapped(_ sender: UIButton) {
-        let postion = sender.convert(sender.bounds.origin, to: tableView)
+        let position = sender.convert(sender.bounds.origin, to: tableView)
         
-        guard let indexPath = tableView.indexPathForRow(at: postion),
-            let imageVC = storyboard?.instantiateViewController(withIdentifier: "ImageScreen") as? ImageViewController else { return }
-        let rowIndex =  indexPath.row
-//        TODO: implement image URL getter
-        imageVC.viewModel = ImageViewModel(image: URL(fileURLWithPath: ""))
+        guard let indexPath = tableView.indexPathForRow(at: position),
+            let imageVC = storyboard?.instantiateViewController(withIdentifier: "ImageScreen") as? ImageViewController,
+        let url = viewModel.model(for: indexPath)?.imageURL else { return }
+        
+        imageVC.viewModel = ImageViewModel(image: url)
         self.show(imageVC, sender: self)
  
     }
