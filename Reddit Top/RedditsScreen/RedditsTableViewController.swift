@@ -16,6 +16,7 @@ final class RedditsTableViewController: UITableViewController {
     fileprivate lazy var pageSize: Int = {
         return Int((UIScreen.main.bounds.height + oneThirdOfScreen) / estimatedRowHeight)
     }()
+    fileprivate var restorationEntryId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +49,7 @@ final class RedditsTableViewController: UITableViewController {
     }
     
     @objc func handleRefreshControl() {
-        // refresh all data completely
         viewModel.loadReddits(limit: pageSize)
-        // Update your content…
-        
-        // Dismiss the refresh control.
         DispatchQueue.main.async {
             self.tableView.refreshControl?.endRefreshing()
         }
@@ -95,6 +92,30 @@ final class RedditsTableViewController: UITableViewController {
             self.viewModel.loadMoreRaddits(limit: self.pageSize)
             showActivityFooter()
         }
+    }
+    
+    
+    // MARK: - State Restoration
+    
+    override func encodeRestorableState(with coder: NSCoder) {
+        guard let index = self.tableView.indexPathsForVisibleRows?.first,
+            let firstId = viewModel.model(for: index)?.id else { return }
+        coder.encode(firstId, forKey: "firstEntry")
+        
+        super.encodeRestorableState(with: coder)
+    }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        if let firstId = coder.decodeObject(forKey: "firstEntry") as? String {
+            self.restorationEntryId = firstId
+        }
+        
+        super.decodeRestorableState(with: coder)
+    }
+    
+    override func applicationFinishedRestoringState() {
+        guard let firstId = self.restorationEntryId else { return }
+        viewModel.loadMoreRaddits(limit: pageSize, id: firstId)
     }
 
 }

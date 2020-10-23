@@ -13,7 +13,7 @@
         <!--Image View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="ImageScreen" id="BYZ-38-t0r" customClass="ImageViewController" customModule="Reddit_Top" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ImageScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ImageViewController" customModule="Reddit_Top" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -62,7 +62,7 @@
         <!--Reddits Table View Controller-->
         <scene sceneID="sfQ-IX-pKK">
             <objects>
-                <tableViewController id="g2g-Og-m9K" customClass="RedditsTableViewController" customModule="Reddit_Top" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="RedditsScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="g2g-Og-m9K" customClass="RedditsTableViewController" customModule="Reddit_Top" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="khk-E3-ill">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -149,7 +149,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Jna-mx-2MI">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PiQ-ob-3Me" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PiQ-ob-3Me" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xrd-b3-uFQ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

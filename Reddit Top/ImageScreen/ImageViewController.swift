@@ -52,6 +52,27 @@ class ImageViewController: UIViewController {
         ImageSaver().writeToPhotoAlbum(image)
     }
     
+    // MARK: - State Restoration
+    
+    override func encodeRestorableState(with coder: NSCoder) {
+        guard let image = self.viewModel.image else { return }
+        coder.encode(image, forKey: "imageToRestore")
+        
+        super.encodeRestorableState(with: coder)
+    }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        if let image = coder.decodeObject(forKey: "imageToRestore") as? UIImage {
+            self.imageView.image = image
+        }
+        
+        super.decodeRestorableState(with: coder)
+    }
+    
+    override func applicationFinishedRestoringState() {
+        print("applicationFinishedRestoringState")
+    }
+    
 }
 
 extension ImageViewController: UIScrollViewDelegate {

@@ -47,12 +47,18 @@ class RedditsViewModel {
     /// Loads more Entries after last loaded one
     ///
     /// - Parameter limit: page size
-    func loadMoreRaddits(limit: Int) {
+    func loadMoreRaddits(limit: Int, id: String? = nil) {
         guard !isLoadingcontent else { return }
-        guard let last = entries.last?.id else {
+        var last: String
+        if let id = id {
+            last = id
+        } else if let lastId = entries.last?.id {
+            last = lastId
+        } else {
             delegate?.failedToLoadReddits()
             return
         }
+        
         isLoadingcontent = true
         NetworkManager.getTop(limit: limit, after: last) { [weak self] result in
             guard let strongSelf = self else { return }
