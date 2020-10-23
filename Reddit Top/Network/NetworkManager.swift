@@ -39,10 +39,11 @@ class NetworkManager {
                     DispatchQueue.main.async {
                         completion(.success(result))
                     }
-                } catch {
+                } catch (let error) {
                     DispatchQueue.main.async {
                         completion(.failure(.decodingError))
-                        DummyErrorHandler.presentDefaultError()
+                        DummyErrorHandler.handle(error)
+//                        DummyErrorHandler.presentDefaultError()
                     }
                 }
             }

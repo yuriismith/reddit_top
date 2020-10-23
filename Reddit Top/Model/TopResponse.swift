@@ -33,7 +33,7 @@ struct SmallEntry: Codable {
     var created: Int
     var num_comments: Int
     var thumbnail: String
-    var url_overridden_by_dest: String
+    var url_overridden_by_dest: String?
 }
 
 // MARK: - FullEntry

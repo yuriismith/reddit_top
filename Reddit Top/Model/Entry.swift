@@ -19,7 +19,10 @@ struct Entry {
         self.commentsCount = small.num_comments
         self.thumbnail = nil
         self.thumbnailURL = URL(string: small.thumbnail)
-        self.imageURL = URL(string: small.url_overridden_by_dest)
+        if let url = small.url_overridden_by_dest {
+            self.imageURL = URL(string: url)
+        }
+        
     }
     
     var id: String
