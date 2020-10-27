@@ -50,9 +50,6 @@ final class RedditsTableViewController: UITableViewController {
     
     @objc func handleRefreshControl() {
         viewModel.loadReddits(limit: pageSize)
-        DispatchQueue.main.async {
-            self.tableView.refreshControl?.endRefreshing()
-        }
     }
     
     // MARK: - Table view data source
